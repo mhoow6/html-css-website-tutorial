@@ -113,26 +113,26 @@
     z-index: 1;
     width: 100%;
     max-width: 1300px;
-    padding: 0;
+    padding: 0; /* 960px 일때 유일하게 다른 부분 */
   }
 
   .navbar__menu {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: auto; /* 각 열의 칸 크기 자동 */
     margin: 0;
-    width: 100%;
-    position: absolute;
-    top: -1000px;
-    opacity: 1;
+    width: 100%; /* navbar_container 크기와 동일 */
+    position: absolute; /* 위치가 브라우저 기준으로 변경 */
+    top: -1000px; /* 1000px 위 (안 보이게 하는 용도) */
+    opacity: 0; /* 투명 */
     transition: all 0.5s ease;
-    height: 50vh;
-    z-index: -1;
+    height: 50vh; /* 뷰포트의 절반 높이만 */
+    z-index: -1; /* 레이아웃 뒤로 가게 하는 용도*/
   }
 
   .navbar__menu.active {
     background: #131313;
-    top: 100%;
-    opacity: 1;
+    top: 100%; /* navbar_conatiner top 기준에서 100% 만큼 이동 */
+    opacity: 1; /* 불투명 */
     transition: all 0.5s ease;
     z-index: 99;
     height: 50vh;
@@ -143,6 +143,7 @@
     padding-left: 25px;
   }
 
+  /* 삼단메뉴 구현, 960px보다 크면 안 보이는 클래스임 */
   .navbar__toggle .bar {
     width: 25px;
     height: 3px;
@@ -159,6 +160,8 @@
     text-align: center;
     padding: 2rem;
     width: 100%;
+
+    /* These elements behave like HTML <table> elements. It defines a block-level box. */
     display: table;
   }
 
@@ -183,20 +186,23 @@
   }
 
   .navbar__toggle .bar {
+    /* display: inline 일 경우, 컨텐츠 내용(text)에 따라 크기가 변동된다 */
+    /* 따라서 block으로 바꿔야 bar 형태를 볼 수 있고, 줄 바꿈이 일어난다. */
     display: block;
     cursor: pointer;
   }
 
+  /* X표시를 만들기 위해 작성 */
   #mobile-menu.is-active .bar:nth-child(2) {
-    opacity: 0;
+    opacity: 0; /* 2번째 bar는 투명 */
   }
 
   #mobile-menu.is-active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg); /* y축으로 8px, 45도 회전 */
   }
 
   #mobile-menu.is-active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg); /* y축으로 -8px, 45도 회전 */
   }
 }
 
